@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getEmailStats, getEmailActivity, invokeWorkflow } from "./utils/helpers/api";
+import { getEmailStats, getEmailActivity, invokeWorkflow } from "../../utils/helpers/api";
 
-const App = () => {
+export default function DashboardPage() {
   const [emailStats, setEmailStats] = useState(null);
   const [emailActivity, setEmailActivity] = useState(null);
   const [workflowResponse, setWorkflowResponse] = useState(null);
@@ -95,4 +95,3 @@ const App = () => {
   );
 };
 
-export default App;
