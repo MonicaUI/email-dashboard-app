@@ -1,9 +1,24 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Box, Typography, Select, MenuItem, Grid } from "@mui/material";
 import StatsCards from "./statscards";
 import RecentEmails from "./recent-emails";
+import { getEmailStats } from "../../utils/helpers/api";
 
 function Dashboard() {
+  const [emailStats, setEmailStats] = useState({});
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const stats = await getEmailStats();
+        setEmailStats(stats);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchStats();
+    },[])
   return (
     <Box sx={{ flexGrow: 1, p: 3, bgcolor: "#f9f9f9" }}>
       <Grid 
@@ -33,7 +48,7 @@ function Dashboard() {
           </Select>
         </Grid>
       </Grid>
-      <StatsCards />
+      <StatsCards emailStats={emailStats} />
       <RecentEmails />
     </Box>
   );

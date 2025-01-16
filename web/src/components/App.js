@@ -4,24 +4,15 @@ import { Routes, Route } from 'react-router-dom';
 import Dashboard from './dashboard';
 import Login from './login';
 
-import { getEmailStats, getEmailActivity, invokeWorkflow } from "../utils/helpers/api";
+import { getEmailActivity, invokeWorkflow } from "../utils/helpers/api";
 import {Paths} from  '../constants/labels'
 
 function App() {
-
-  const [emailStats, setEmailStats] = useState(null);
   const [emailActivity, setEmailActivity] = useState(null);
   const [workflowResponse, setWorkflowResponse] = useState(null);
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const stats = await getEmailStats();
-        setEmailStats(stats);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+   
 
     const fetchActivity = async () => {
       try {
@@ -32,7 +23,6 @@ function App() {
       }
     };
 
-    fetchStats();
     fetchActivity();
   }, []);
 
@@ -58,10 +48,11 @@ function App() {
   return (
  
                 <Routes>
+             
                   <Route
                     path={Paths.Dashboard}
                     element={
-                        <Dashboard />
+                        <Dashboard  />
                     }
                   />
     

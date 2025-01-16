@@ -2,16 +2,16 @@ import React from "react";
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import { Mail, Drafts, Inbox, Reply, Send, Timer } from "@mui/icons-material";
 
-const stats = [
-  { title: "Total Received", value: 1234, icon: <Mail color="primary" /> },
-  { title: "Read", value: 987, icon: <Drafts color="success" /> },
-  { title: "Unread", value: 247, icon: <Inbox color="error" /> },
-  { title: "Sent", value: 856, icon: <Send color="primary" /> },
-  { title: "Replies", value: 543, icon: <Reply color="primary" /> },
-  { title: "Avg Response", value: "2.5h", icon: <Timer color="error" /> },
-];
-
-function StatsCards() {
+function StatsCards({emailStats}) {
+console.log(emailStats)
+  const stats = [
+    { title: "Total Received", value: emailStats?.total || 0, icon: <Mail color="primary" /> },
+    { title: "Read", value: emailStats?.read || 0, icon: <Drafts color="success" /> },
+    { title: "Unread", value: emailStats?.unread || 0, icon: <Inbox color="error" /> },
+    { title: "Sent", value: emailStats?.sent || 0, icon: <Send color="primary" /> },
+    { title: "Replies", value: emailStats?.replied || 0, icon: <Reply color="primary" /> },
+    { title: "Avg Response", value: emailStats?.averageResponse || "N/A", icon: <Timer color="error" /> },
+  ];
   return (
     <Grid container spacing={2}>
       {stats.map((stat, index) => (
